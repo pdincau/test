@@ -30,8 +30,16 @@ do(State) ->
     %%State1 = rebar_state:new(RebarConfig),
     %%Profiles = rebar_state:current_profiles(State1),
     %%io:format("Profiles is: ~p~n", Profiles),
-    _Options = rebar_state:command_args(State),
-    %%io:format("Options are: ~p~n", Options),
+    State2 = case os:getenv("REBAR_PROFILE") of
+                 false ->
+                     State;
+                 "" ->
+                     State;
+                 Profile ->
+                     rebar_state:apply_profiles(State, [list_to_atom(Profile)])
+             end,
+    %_Options = rebar_state:command_args(State),
+    io:format("Options are: ~p~n", State2),
 
     DeployConfigurations = rebar_config:consult_file("deploy.config"),
     io:format("Deploy configurations are:  ~p~n", [DeployConfigurations]),
