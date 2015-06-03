@@ -31,7 +31,7 @@ do(State) ->
     %%Profiles = rebar_state:current_profiles(State1),
     %%io:format("Profiles is: ~p~n", Profiles),
     Options = rebar_state:command_args(State),
-    io:format("Options are: ~p~n", Optionss),
+    io:format("Options are: ~p~n", Options),
 
     DeployConfigurations = rebar_config:consult_file("deploy.config"),
     io:format("Deploy configurations are:  ~p~n", [DeployConfigurations]),
