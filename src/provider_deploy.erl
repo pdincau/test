@@ -26,11 +26,12 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-    DeployConfigurations = rebar_config:consult_file("deploy.config"),
-    %State1 = rebar_state:new(RebarConfig),
+    RebarConfig = rebar_config:consult_file("rebar.config"),
+    State1 = rebar_state:new(RebarConfig),
+    Profiles = rebar_state:current_profiles(State1),
+    io:format("Profiles is: ~p~n", Profiles),
 
-    %?assertEqual([default, profile1], rebar_state:current_profiles(State1)),
-    io:format("State is: ~p~n", State),
+    DeployConfigurations = rebar_config:consult_file("deploy.config"),
     io:format("Deploy configurations are:  ~p~n", [DeployConfigurations]),
     {ok, State}.
 
