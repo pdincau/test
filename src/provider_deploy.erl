@@ -27,7 +27,7 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
     DeployConfigurations = rebar_config:consult_file("deploy.config"),
-    io:format("State is: ~p~n", State),
+%    io:format("State is: ~p~n", State),
     io:format("Deploy configurations are:  ~p~n", [DeployConfigurations]),
     {ok, State}.
 
